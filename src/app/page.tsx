@@ -1,4 +1,4 @@
-import { SignIn } from '@/components/SigIn'
+import { SignIn } from '@/components/SignIn'
 import { UserProfile } from '@/components/UserProfile'
 import { cookies } from 'next/headers'
 import Link from 'next/link'
