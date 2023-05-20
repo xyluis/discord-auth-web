@@ -25,10 +25,12 @@ export function UserProfile() {
             className="rounded-full"
           />
         </div>
-        Logged as{' '}
-        <span className="font-bold">
-          {username}#{discriminator}
-        </span>
+        <div className="flex items-center justify-center gap-1">
+          <p>Logged as</p>
+          <span className="font-bold">
+            {username}#{discriminator}
+          </span>
+        </div>
       </div>
       <Link href="/api/auth/logout" className="text-red-500 hover:text-red-400">
         Logout
