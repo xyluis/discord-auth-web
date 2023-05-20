@@ -17,5 +17,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: '/special', // '/special/:path*'
+  matcher: '/special/:path*', // '/special/:path*'
 }

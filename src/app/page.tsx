@@ -10,6 +10,12 @@ export default function Home() {
     <main className="flex min-h-screen flex-1 flex-col items-center justify-center gap-2">
       {isAuthenticated ? <UserProfile /> : <SignIn />}
 
+      <Link
+        href="/special/guilds"
+        className="text-blue-500 hover:text-blue-400"
+      >
+        Guilds
+      </Link>
       <Link href="/special" className="text-blue-500 hover:text-blue-400">
         Access Special Page
       </Link>
