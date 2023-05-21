@@ -1,40 +1,39 @@
 import Link from 'next/link'
-import { api } from '@/lib/api'
+import { apiURL } from '@/lib/api'
 import { cookies } from 'next/headers'
-import { getUser } from '@/lib/auth'
 import { z } from 'zod'
 import Image from 'next/image'
+import { inviteURL } from '@/utils/discord'
 
 async function getGuilds() {
   const token = cookies().get('token')?.value
-  const { accessToken } = getUser()
 
-  const guildsResponse = await api.get('/api/guilds/@me', {
+  const guildsResponse = await fetch(`${apiURL}/api/guilds/@me`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
-    params: {
-      access_token: accessToken,
-    },
+    cache: 'force-cache',
   })
+
+  const guildsResponseData = await guildsResponse.json()
 
   const guildsSchema = z.array(
     z.object({
       id: z.string(),
       name: z.string(),
       icon: z.string().nullable(),
-      owner: z.boolean(),
-      permissions: z.coerce.number(),
+      canManage: z.boolean(),
+      permissions: z.number(),
       iconUrl: z.string().nullable(),
     }),
   )
 
-  const guilds = guildsSchema.parse(guildsResponse.data.guilds)
+  const guilds = guildsSchema.parse(guildsResponseData.guilds)
 
   return guilds
 }
 
-export default async function GuildsPage() {
+export default async function DashboardPage() {
   const guilds = await getGuilds()
 
   return (
@@ -49,7 +48,7 @@ export default async function GuildsPage() {
         {guilds.map((guild) => (
           <div
             key={guild.id}
-            className="static flex w-auto flex-col items-center justify-center gap-1 rounded-xl border bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30"
+            className="static flex w-auto flex-col items-center justify-center gap-1 rounded-xl border lg:p-4"
           >
             {guild.iconUrl && (
               <Image
@@ -61,13 +60,24 @@ export default async function GuildsPage() {
               />
             )}
             <h2>{guild.name}</h2>
+            {guild.canManage ? (
+              <Link
+                href={`/dashboard/${guild.id}`}
+                className="text-blue-500 hover:text-blue-400"
+              >
+                Manage
+              </Link>
+            ) : (
+              <Link
+                href={inviteURL(guild.id)}
+                className="text-blue-500 hover:text-blue-400"
+              >
+                Add
+              </Link>
+            )}
           </div>
         ))}
       </div>
-
-      <Link href="/" className="text-blue-500 hover:text-blue-400">
-        Go back to home
-      </Link>
     </main>
   )
 }

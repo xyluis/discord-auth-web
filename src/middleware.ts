@@ -8,7 +8,7 @@ export function middleware(request: NextRequest) {
   if (!token) {
     return NextResponse.redirect(authURL, {
       headers: {
-        'Set-Cookie': `redirectTo=${request.url}; Path=/; HttpOnly; max-age=20;`,
+        'Set-Cookie': `redirectTo=${request.url}; Path=/; HttpOnly; Max-Age=10;`,
       },
     })
   }
@@ -17,5 +17,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: '/special/:path*', // '/special/:path*'
+  matcher: '/dashboard/:path*',
 }

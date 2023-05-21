@@ -6,7 +6,6 @@ interface User {
   username: string
   discriminator: string
   avatarUrl: string
-  accessToken: string
   decorationUrl: string | null
 }
 
