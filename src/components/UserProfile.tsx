@@ -27,7 +27,11 @@ export function UserProfile() {
         </div>
         <span className="font-bold">{tag}</span>
       </div>
-      <Link href="/api/auth/logout" className="text-red-400 hover:text-red-300">
+      <Link
+        href="/api/auth/logout"
+        prefetch={false}
+        className="text-red-400 hover:text-red-300"
+      >
         Quero sair
       </Link>
     </div>
