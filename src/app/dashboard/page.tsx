@@ -48,7 +48,7 @@ export default async function DashboardPage() {
         {guilds.map((guild) => (
           <div
             key={guild.id}
-            className="static flex w-auto flex-col items-center justify-center gap-1 rounded-xl border lg:p-4"
+            className="static flex w-auto flex-col items-center justify-center gap-1 rounded-xl border p-4"
           >
             {guild.iconUrl && (
               <Image
