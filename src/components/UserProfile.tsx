@@ -25,9 +25,7 @@ export function UserProfile() {
             className="rounded-full"
           />
         </div>
-        <div className="flex items-center justify-center gap-1">
-          <span className="font-bold">{tag}</span>
-        </div>
+        <span className="font-bold">{tag}</span>
       </div>
       <Link href="/api/auth/logout" className="text-red-400 hover:text-red-300">
         Quero sair
