@@ -26,12 +26,11 @@ export function UserProfile() {
           />
         </div>
         <div className="flex items-center justify-center gap-1">
-          <p>Logged as</p>
           <span className="font-bold">{tag}</span>
         </div>
       </div>
-      <Link href="/api/auth/logout" className="text-red-500 hover:text-red-400">
-        Logout
+      <Link href="/api/auth/logout" className="text-red-400 hover:text-red-300">
+        Quero sair
       </Link>
     </div>
   )

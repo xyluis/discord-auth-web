@@ -12,12 +12,12 @@ export default function Home() {
         <>
           <UserProfile />
           <Link href="/dashboard" className="text-blue-500 hover:text-blue-400">
-            Dashboard
+            Painel
           </Link>
         </>
       ) : (
         <Link href={authURL} className="text-blue-500 hover:text-blue-400">
-          Login
+          Entrar com Discord
         </Link>
       )}
     </main>

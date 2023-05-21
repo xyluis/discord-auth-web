@@ -38,10 +38,10 @@ export default async function DashboardPage() {
 
   return (
     <main className="flex min-h-screen flex-1 flex-col items-center justify-center gap-4">
-      <h1>Guilds</h1>
+      <h1 className="text-2xl font-bold">Dashboard</h1>
 
       <Link href="/" className="text-blue-500 hover:text-blue-400">
-        Go back to home
+        Me tire daqui
       </Link>
 
       <div className="grid grid-cols-3 gap-4">
@@ -65,14 +65,14 @@ export default async function DashboardPage() {
                 href={`/dashboard/${guild.id}`}
                 className="text-blue-500 hover:text-blue-400"
               >
-                Manage
+                Gerenciar
               </Link>
             ) : (
               <Link
                 href={inviteURL(guild.id)}
                 className="text-blue-500 hover:text-blue-400"
               >
-                Add
+                Adicionar
               </Link>
             )}
           </div>
