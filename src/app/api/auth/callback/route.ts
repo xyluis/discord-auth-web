@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server'
-import decode from 'jwt-decode'
 import { apiURL } from '@/lib/api'
 
 export async function GET(request: NextRequest) {
@@ -23,19 +22,13 @@ export async function GET(request: NextRequest) {
     body: JSON.stringify({ code }),
   })
 
-  const { token } = await response.json()
+  const { token, expiration } = await response.json()
 
   const redirectURL = redirectTo ?? new URL('/', request.url)
 
-  const { auth } = decode(token) as {
-    auth: {
-      expiration: number
-    }
-  }
-
   return NextResponse.redirect(redirectURL, {
     headers: {
-      'Set-Cookie': `token=${token}; Path=/; Max-Age=${auth.expiration};`,
+      'Set-Cookie': `token=${token}; Path=/; Max-Age=${expiration};`,
     },
   })
 }

@@ -3,8 +3,7 @@ import decode from 'jwt-decode'
 
 interface User {
   sub: string
-  username: string
-  discriminator: string
+  tag: string
   avatarUrl: string
   decorationUrl: string | null
 }
