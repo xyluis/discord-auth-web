@@ -10,6 +10,7 @@ async function getGuilds() {
 
   const guildsResponse = await fetch(`${apiURL}/api/guilds/@me`, {
     headers: {
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
     cache: 'force-cache',
